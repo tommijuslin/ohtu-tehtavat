@@ -55,7 +55,8 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
 
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
 
     def test_ostaessa_kaksi_eri_tuotetta_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         self.kauppa.aloita_asiointi()
@@ -63,7 +64,8 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(2)
         self.kauppa.tilimaksu("pekka", "12345")
 
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 15)
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 42, "12345", self.kauppa._kaupan_tili, 15)
 
     def test_ostaessa_kaksi_samaa_tuotetta_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         self.kauppa.aloita_asiointi()
@@ -71,7 +73,8 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
 
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 10)
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 42, "12345", self.kauppa._kaupan_tili, 10)
 
     def test_ostaessa_tuotetta_jota_ei_tarpeeksi_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         self.kauppa.aloita_asiointi()
@@ -79,4 +82,44 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(3)
         self.kauppa.tilimaksu("pekka", "12345")
 
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 42, "12345", self.kauppa._kaupan_tili, 5)
+
+    def test_metodi_aloita_asiointi_nollaa_edellisen_ostoksen_tiedot(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+
+        self.assertEqual(self.kauppa._ostoskori.hinta(), 5)
+
+        self.kauppa.aloita_asiointi()
+
+        self.assertEqual(self.kauppa._ostoskori.hinta(), 0)
+
+    def test_pyydetaan_uusi_viite_jokaiseen_maksuun(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.assertEqual(self.kauppa._viitegeneraattori.uusi.call_count, 1)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.assertEqual(self.kauppa._viitegeneraattori.uusi.call_count, 2)
+
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(3)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        self.assertEqual(self.kauppa._viitegeneraattori.uusi.call_count, 3)
+
+    def test_kaupan_metodi_poista_korista_poistaa_tuotteen_korista(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+
+        self.assertEqual(self.kauppa._ostoskori.hinta(), 5)
+
+        self.kauppa.poista_korista(1)
+
+        self.assertEqual(self.kauppa._ostoskori.hinta(), 0)
