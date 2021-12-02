@@ -19,9 +19,16 @@ class Erotus:
 
 
 class Nollaus:
-    def __init__(self, sovellus, io):
+    def __init__(self, sovellus):
         self._sovellus = sovellus
-        self._io = io
 
     def suorita(self):
         self._sovellus.nollaa()
+
+
+class Kumoa:
+    def __init__(self, sovellus):
+        self._sovellus = sovellus
+    
+    def suorita(self):
+        self._sovellus.kumoa()

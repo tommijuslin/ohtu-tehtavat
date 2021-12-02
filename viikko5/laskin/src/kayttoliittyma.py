@@ -1,6 +1,6 @@
 from enum import Enum
 from tkinter import ttk, constants, StringVar
-from komennot import Summa, Erotus, Nollaus
+from komennot import Summa, Erotus, Nollaus, Kumoa
 
 
 class Komento(Enum):
@@ -17,8 +17,8 @@ class Kayttoliittyma:
         self._komennot = {
             Komento.SUMMA: Summa(sovellus, self._lue_syote),
             Komento.EROTUS: Erotus(sovellus, self._lue_syote),
-            Komento.NOLLAUS: Nollaus(sovellus, self._lue_syote),
-            # Komento.KUMOA: Kumoa(sovellus, self._lue_syote)
+            Komento.NOLLAUS: Nollaus(sovellus),
+            Komento.KUMOA: Kumoa(sovellus)
         }
 
     def kaynnista(self):
@@ -75,4 +75,4 @@ class Kayttoliittyma:
             self._nollaus_painike["state"] = constants.NORMAL
 
         self._syote_kentta.delete(0, constants.END)
-        self._tulos_var.set(self._sovellus.tulos)
+        self._tulos_var.set(self._sovellus.tulos[-1])
