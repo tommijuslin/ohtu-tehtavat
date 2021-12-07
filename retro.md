@@ -6,6 +6,6 @@ Start, Stop, Continue, More of, Less of Wheel on yksinkertainen retrospektiivite
 
 ## Glad, Sad, Mad
 
-Tässä retrospektiivitekniikassa tiimin jäsenten ajatukset jaetaan kolmeen kategoriaan: iloinen, surullinen, vihainen. Ensimmäiset noin 10 tai 15 minuuttia käytetään kirjoittamalla kortteihin ajatuksia sprintistä, tiimistä tai jopa ulkopuolisista asioista, jotka ovat kuitenkin vaikuttaneet sprinttiin . Ajatukset voivat olla positiivisia tai negatiivisia. Seuraavaksi osallistujat antavat muulle tiimille lyhyet kuvaukset korteista ja asettavat ne oikean kategorian alle. Yksi osallistujista kerää samaan asiaan liittyvät kortit yhteen.
+Tässä retrospektiivitekniikassa tiimin jäsenten ajatukset jaetaan kolmeen kategoriaan: iloinen, surullinen, vihainen. Ensimmäiset noin 10 tai 15 minuuttia käytetään kirjoittamalla kortteihin ajatuksia sprintistä, tiimistä tai jopa ulkopuolisista asioista, jotka ovat kuitenkin vaikuttaneet sprinttiin. Ajatukset voivat olla positiivisia tai negatiivisia. Seuraavaksi osallistujat antavat muulle tiimille lyhyet kuvaukset korteista ja asettavat ne oikean kategorian alle. Yksi osallistujista kerää samaan asiaan liittyvät kortit yhteen.
 
 Osallistujat äänestävät mistä korteista he mieluiten keskustelisivat. Äänestys hoituu esimerkiksi piirtämällä ympyrä korttiin. Äänestyksen jälkeen tiimi keskustelee korteista ns. puheenjohtajan johdolla äänimäärien perusteella, kunnes joko tunti on kulunut tai kaikki kortit on käsitelty.
